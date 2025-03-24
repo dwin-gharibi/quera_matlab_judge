@@ -1,13 +1,13 @@
 {
     "version": 2,
     "python_version": 3.9,
-    "solution_signature": "solution/Q2.asm",
+    "solution_signature": "solution/run_my_sum.m",
     "number_of_tests": 1,
     "can_submit_single_file": true,
-    "single_file_path": "solution/Q2.asm",
+    "single_file_path": "solution/run_my_sum.m",
     "packages": [
         {
-            "name": "8086_judge",
+            "name": "matlab_judge",
             "score": 100,
             "tests": [
                 "test_1"

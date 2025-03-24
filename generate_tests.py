@@ -40,7 +40,7 @@ def generate_config(test_cases, solution_file):
         "single_file_path": f"solution/{solution_file}",
         "packages": [
             {
-                "name": "8086_judge",
+                "name": "matlab_judge",
                 "score": 100,
                 "tests": [f"test_{i+1}" for i in range(len(test_cases))],
                 "aggregator": "sum"
@@ -66,9 +66,9 @@ def generate_test_file(test_cases, solution_file):
     test_content = '''import unittest
 import os
 from scripts.docker_handler import DockerHandler
-from scripts.asm_runner import AssemblyRunner
+from scripts.octave_runner import OctaveRunner
 
-class TestAssemblyPrograms(unittest.TestCase):
+class TestOctavePrograms(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         DockerHandler.start_container()
@@ -81,18 +81,18 @@ class TestAssemblyPrograms(unittest.TestCase):
     for index, (input_file, output_file) in enumerate(test_cases):
         test_content += f'''
     def test_{index + 1}(self):
-        asm_file = "{solution_file}"
+        octave_file = "{solution_file}"
         input_file = "{input_file}"
         output_file = "{output_file}"
 
-        AssemblyRunner.compile_asm(asm_file)
-        output = AssemblyRunner.run_asm(asm_file, input_file)
+        OctaveRunner.compile_octave(octave_file)
+        output = OctaveRunner.run_octave(octave_file, input_file)
 
-        output_path = os.path.join(AssemblyRunner.TEST_CASES_FOLDER, "out", output_file)
+        output_path = os.path.join(OctaveRunner.TEST_CASES_FOLDER, "out", output_file)
         with open(output_path, "r") as f:
             expected_output = [line.strip() for line in f.readlines()]
 
-        self.assertEqual(output, expected_output, f"Unexpected output for {{asm_file}}")
+        self.assertEqual(output, expected_output, f"Unexpected output for {{octave_file}}")
 '''
 
     test_content += '''
@@ -108,8 +108,8 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
     
-    parser = argparse.ArgumentParser(description="Process assembly solution file.")
-    parser.add_argument("--solution", type=str, required=True, help="Path to the assembly solution file")
+    parser = argparse.ArgumentParser(description="Process Octave solution file.")
+    parser.add_argument("--solution", type=str, required=True, help="Path to the Octave solution file")
 
     args = parser.parse_args()
     solution_file = args.solution
