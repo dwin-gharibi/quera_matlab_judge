@@ -4,3 +4,5 @@ test_cases/in/*.txt
 test_cases/out/*.txt
 .DS_Store
 **/__pycache__
+.DS_Store
+.gitignore
