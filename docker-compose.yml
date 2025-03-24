@@ -1,10 +1,11 @@
 version: "3.3"
 services:
-  asm-container:
-    build:
-      context: ./solution
-      dockerfile: Dockerfile
-    container_name: "asm-container"
+  octave-container:
+    image: gnuoctave/octave:8.2.0
+    container_name: "octave-container"
+    working_dir: /mnt
     volumes:
-      - ./solution:/workspace
-      - ./test_cases:/test_cases
+      - ./solution:/mnt
+    stdin_open: true
+    tty: true
+    command: ["tail", "-f", "/dev/null"]
