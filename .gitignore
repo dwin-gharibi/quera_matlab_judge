@@ -1,0 +1,6 @@
+solution/*
+!solution/Dockerfile
+test_cases/in/*.txt
+test_cases/out/*.txt
+.DS_Store
+**/__pycache__
