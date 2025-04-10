@@ -83,7 +83,7 @@ This system can be extended or adapted for a wide range of evaluation scenarios,
 - 🎓 **Open-source** and customizable
 - 🧪 **Testcase discoverer** included
 - 🧠 **Minimal dependencies** using standard Octave
-- 🔧 **Easy integration** with learning platforms or backends
+- 🔧 **Easy integration** with Quera
 
 
 ## ⚙️ Integration with Paas Judge
@@ -117,9 +117,9 @@ services:
 
 - Mounts your local `./solution` directory into the container's `/mnt`. **It will make users solution file accesible form octave's container.**
 
-- Starts a persistent container (tail -f /dev/null) so you can run commands inside **interactively.**
+- Starts a persistent container *(tail -f /dev/null)* so you can run commands inside **interactively.**
 
-- Also useful for **debugging** or **executing** MATLAB/Octave .m files manually.
+- Also useful for **debugging** or **executing** MATLAB/Octave `.m` files manually.
 
 ---
 
