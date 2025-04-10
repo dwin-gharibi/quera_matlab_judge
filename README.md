@@ -13,6 +13,7 @@ Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerize
 ## 📌 Overview
 
 This judge uses [GNU Octave](https://www.octave.org/) under the hood to execute and validate MATLAB-like code. Octave is a powerful open-source tool that closely mirrors MATLAB's syntax and capabilities, making it a great backend for judging MATLAB submissions without licensing restrictions.
+- **Difference in Compatibility:** Around **10-20%** *(with MATLAB having some proprietary features not in Octave).*
 
 
 ![Octave screen shot](./assets/imgs/octave-screen.png)
@@ -27,15 +28,15 @@ The judging process includes:
 
 1. **Putting** quera's input files in in and output files in out folder. **Pay attention to names!** It's **not** important to put them in **order,** because *test discoverer* will find all of them without problem, but there **should be a bijection** between input and output files, **if not they** will be **skipped** when using test discoverer!
 
-![Solution image](./assets/imgs/test-py.jpg)
+![Solution image](./assets/imgs/quera-test-cases.jpg)
 
 
 2. **Run test dicoverer and generator.** You should run `generate_tests.py` file and give `--solution` flag and solution file name as an argument to it. It will discover tests you had put in test_cases folder before, generate code for test.py section which is main entry point, generate tester_config.json file which is judge configs and valid_files which is valid files that can be recived from users.
 
-![Solution image](./assets/imgs/test-generator.jpg)
-
-
 ![Solution image](./assets/imgs/quera-test-cases.jpg)
+
+
+![Solution image](./assets/imgs/test-generator.jpg)
 
 
 ![Solution image](./assets/imgs/test-py.jpg)
