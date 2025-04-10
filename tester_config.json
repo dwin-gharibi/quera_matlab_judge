@@ -2,7 +2,7 @@
     "version": 2,
     "python_version": 3.9,
     "solution_signature": "solution/solution.m",
-    "number_of_tests": 2,
+    "number_of_tests": 5,
     "can_submit_single_file": true,
     "single_file_path": "solution/solution.m",
     "packages": [
@@ -11,7 +11,10 @@
             "score": 100,
             "tests": [
                 "test_1",
-                "test_2"
+                "test_2",
+                "test_3",
+                "test_4",
+                "test_5"
             ],
             "aggregator": "sum"
         }
