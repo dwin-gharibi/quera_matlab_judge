@@ -26,7 +26,7 @@ The system is optimized for containerized environments using Docker, making depl
 
 The judging process includes:
 
-1. **Putting** quera's input files in in and output files in out folder. **Pay attention to names!** It's **not** important to put them in **order,** because *test discoverer* will find all of them without problem, but there **should be a bijection** between input and output files, **if not they** will be **skipped** when using test discoverer!
+1. **Put** quera's **input files** in `in` and **output files** in `out` folder. **Pay attention to names!** It's **not** important to put them in **order,** because *test discoverer* will find all of them without problem, but there **should be a bijection** between input and output files, **if not they** will be **skipped** when using test discoverer!
 
 ![Test cases image](./assets/imgs/quera-test-cases.jpg)
 
