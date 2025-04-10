@@ -33,20 +33,19 @@ The judging process includes:
 
 2. **Run test dicoverer and generator.** You should run `generate_tests.py` file and give `--solution` flag and solution file name as an argument to it. It will discover tests you had put in test_cases folder before, generate code for test.py section which is main entry point, generate tester_config.json file which is judge configs and valid_files which is valid files that can be recived from users.
 
-![Solution image](./assets/imgs/quera-test-cases.jpg)
+```python
+python3 generate_tests.py --solution=solution.m
+```
 
 
 ![Solution image](./assets/imgs/test-generator.jpg)
 
+![Solution image](./assets/imgs/quera-test-generator.jpg)
 
 ![Solution image](./assets/imgs/test-py.jpg)
 
 ![Solution image](./assets/imgs/tester-config.jpg)
 
-
-```python
-python3 generate_tests.py --solution=solution.m
-```
 
 3. **Thats it!** Now just zip all the content and upload as a Quera's Paas (Devops) judge tester file! 
 
@@ -57,8 +56,15 @@ python3 generate_tests.py --solution=solution.m
 ![Solution image](./assets/imgs/quera-solution-files.jpg)
 
 
-2. **Running the solution files using Octave Container** via a python judge script (`test.py`) that defines how the solution is tested.
-3. **Comparing outputs** with expected results defined in test cases.
+5. **Running the solution files using Octave Container** via a python judge script (`test.py`) that defines how the solution is tested.
+
+![Solution image](./assets/imgs/quera-test-result.jpg)
+
+
+6. **Comparing outputs** with expected results defined in test cases.
+
+![Solution image](./assets/imgs/quera-test-result-2.jpg)
+
 
 This system can be extended or adapted for a wide range of evaluation scenarios, including:
 - Autograding in online courses
