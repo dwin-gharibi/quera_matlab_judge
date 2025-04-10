@@ -4,7 +4,7 @@
 
 # Quera's MATLAB (Octave) Judge
 
-Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using @gnu-octave. It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings.
+Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using @gnu-octave. It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings. This *MATLAB (Octave)* judge is **about 2 to 4 times** faster than the *current MATLAB judge!*
 
 ![Octave image](./assets/imgs/octave.svg)
 
@@ -28,45 +28,46 @@ The judging process includes:
 
 1. **Putting** quera's input files in in and output files in out folder. **Pay attention to names!** It's **not** important to put them in **order,** because *test discoverer* will find all of them without problem, but there **should be a bijection** between input and output files, **if not they** will be **skipped** when using test discoverer!
 
-![Solution image](./assets/imgs/quera-test-cases.jpg)
+![Test cases image](./assets/imgs/quera-test-cases.jpg)
 
 
-2. **Run test dicoverer and generator.** You should run `generate_tests.py` file and give `--solution` flag and solution file name as an argument to it. It will discover tests you had put in test_cases folder before, generate code for test.py section which is main entry point, generate tester_config.json file which is judge configs and valid_files which is valid files that can be recived from users.
+2. **Run test dicoverer and generator.** You should run `generate_tests.py` file and give `--solution` flag and solution file name as an argument to it. It will **discover tests** you had put in `test_cases` folder before, **generate code** for `test.py` section which is **main entry point,** generate `tester_config.json` file which is **judge configs** and `valid_files` which is **valid files that can be recived from users.**
 
 ```python
 python3 generate_tests.py --solution=solution.m
 ```
 
 
-![Solution image](./assets/imgs/test-generator.jpg)
+![Test Generator image](./assets/imgs/test-generator.jpg)
 
-![Solution image](./assets/imgs/quera-test-generator.jpg)
+![Test Generator image](./assets/imgs/quera-test-generator.jpg)
 
-![Solution image](./assets/imgs/test-py.jpg)
+![Test image](./assets/imgs/test-py.jpg)
 
-![Solution image](./assets/imgs/tester-config.jpg)
+![Tester config image](./assets/imgs/tester-config.jpg)
 
 
 3. **Thats it!** Now just zip all the content and upload as a Quera's Paas (Devops) judge tester file! 
 
-![Solution image](./assets/imgs/quera-judge-config.jpg)
+![Judge config image](./assets/imgs/quera-judge-config.jpg)
 
 4. **Receiving some solution `.m` files** submitted by a user.
 
-![Solution image](./assets/imgs/quera-solution-files.jpg)
+![Quera solution files image](./assets/imgs/quera-solution-files.jpg)
 
 
 5. **Running the solution files using Octave Container** via a python judge script (`test.py`) that defines how the solution is tested.
 
-![Solution image](./assets/imgs/quera-test-result.jpg)
+![Quera test result image](./assets/imgs/quera-test-result.jpg)
 
 
 6. **Comparing outputs** with expected results defined in test cases.
 
-![Solution image](./assets/imgs/quera-test-result-2.jpg)
+![Quera test result image](./assets/imgs/quera-test-result-2.jpg)
 
 
 This system can be extended or adapted for a wide range of evaluation scenarios, including:
+
 - Autograding in online courses
 - Competitive programming contests
 - In-browser coding challenges
@@ -89,13 +90,12 @@ This system can be extended or adapted for a wide range of evaluation scenarios,
 
 To integrate with [Quera's Paas Judge](https://github.com/QueraTeam/):
 
-- Define a judge config that uses this container
-- Format your problem input/output expectations accordingly
-- Optionally, return structured JSON verdicts for easier parsing
+- Define a judge config that uses this judge as a **tester.**
+- Format your problem *input/output* expectations accordingly.
 
 ---
 
-🐳 docker-compose.yml
+**🐳 docker-compose.yml**
 
 ```
 version: "3.3"
@@ -113,13 +113,13 @@ services:
 
 📌 What It Does
 
-- Uses the official Octave image from GitLab.
+- Uses the official **Octave** image from *Quera's GitLab Container Registery.*
 
-- Mounts your local ./solution directory into the container's /mnt.
+- Mounts your local `./solution` directory into the container's `/mnt`. **It will make users solution file accesible form octave's container.**
 
-- Starts a persistent container (tail -f /dev/null) so you can run commands inside interactively.
+- Starts a persistent container (tail -f /dev/null) so you can run commands inside **interactively.**
 
-- Useful for debugging or executing MATLAB/Octave .m files manually.
+- Also useful for **debugging** or **executing** MATLAB/Octave .m files manually.
 
 ---
 
