@@ -1,5 +1,3 @@
-test_cases/in/*.txt
-test_cases/out/*.txt
 .gitignore
 .DS_Store
 **/__pycache__
