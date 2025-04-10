@@ -4,7 +4,7 @@
 
 # Quera's MATLAB (Octave) Judge
 
-Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using @gnu-octave. It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings. This *MATLAB (Octave)* judge is **about 2 to 4 times** faster than the *current MATLAB judge!*
+Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using [**@gnu-octave**](https://github.com/gnu-octave). It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings. This *MATLAB (Octave)* judge is **about 2 to 4 times** faster than the *current MATLAB judge!*
 
 ![Octave image](./assets/imgs/octave.svg)
 
@@ -31,7 +31,7 @@ The judging process includes:
 ![Test cases image](./assets/imgs/quera-test-cases.jpg)
 
 
-2. **Run test dicoverer and generator.** You should run `generate_tests.py` file and give `--solution` flag and solution file name as an argument to it. It will **discover tests** you had put in `test_cases` folder before, **generate code** for `test.py` section which is **main entry point,** generate `tester_config.json` file which is **judge configs** and `valid_files` which is **valid files that can be recived from users.**
+2. **Run test dicoverer and generator.** You should run `generate_tests.py` file and give `--solution` flag and solution file name as an argument to it. It will **discover tests** you had put in `test_cases` folder before, **generate code** for `test.py` section which is **main entry point,** generate `tester_config.json` file which is **judge configs** and `valid_files` which is **valid files that can be recived from users.** This will also let you to **customize** each test differently!
 
 ```python
 python3 generate_tests.py --solution=solution.m
