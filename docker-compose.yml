@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   octave-container:
-    image: gnuoctave/octave:8.2.0
+    image: registry.gitlab.com/qio/standard/gnuoctave/octave:8.2.0
     container_name: "octave-container"
     working_dir: /mnt
     volumes:
