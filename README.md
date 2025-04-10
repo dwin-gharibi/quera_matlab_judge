@@ -1,9 +1,14 @@
 
-![Octave image](./docs/imgs/octave.svg)
+![Quera infra image](./assets/imgs/quera-infra.jpg)
+
 
 # Quera's MATLAB (Octave) Judge
 
-Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using **@gnu-octave**. It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings.
+Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using @gnu-octave. It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings.
+
+
+![Octave image](./assets/imgs/octave.svg)
+
 
 ---
 
@@ -12,7 +17,7 @@ Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerize
 This judge uses [GNU Octave](https://www.octave.org/) under the hood to execute and validate MATLAB-like code. Octave is a powerful open-source tool that closely mirrors MATLAB's syntax and capabilities, making it a great backend for judging MATLAB submissions without licensing restrictions.
 
 
-![Octave screen shot](./docs/imgs/octave-screen.png)
+![Octave screen shot](./assets/imgs/octave-screen.png)
 
 The system is optimized for containerized environments using Docker, making deployment simple, portable, and scalable.
 
@@ -22,7 +27,37 @@ The system is optimized for containerized environments using Docker, making depl
 
 The judging process includes:
 
-1. **Receiving some solution `.m` files** submitted by a user.
+1. **Putting** quera's input files in in and output files in out folder. **Pay attention to names!** It's **not** important to put them in **order,** because *test discoverer* will find all of them without problem, but there **should be a bijection** between input and output files, **if not they** will be **skipped** when using test discoverer!
+
+![Solution image](./assets/imgs/test-py.jpg)
+
+
+2. **Run test dicoverer and generator.** You should run `generate_tests.py` file and give `--solution` flag and solution file name as an argument to it. It will discover tests you had put in test_cases folder before, generate code for test.py section which is main entry point, generate tester_config.json file which is judge configs and valid_files which is valid files that can be recived from users.
+
+![Solution image](./assets/imgs/test-generator.jpg)
+
+
+![Solution image](./assets/imgs/quera-test-cases.jpg)
+
+
+![Solution image](./assets/imgs/test-py.jpg)
+
+![Solution image](./assets/imgs/tester-config.jpg)
+
+
+```python
+python3 generate_tests.py --solution=solution.m
+```
+
+3. **Thats it!** Now just zip all the content and upload as a Quera's Paas (Devops) judge tester file! 
+
+![Solution image](./assets/imgs/quera-judge-config.jpg)
+
+4. **Receiving some solution `.m` files** submitted by a user.
+
+![Solution image](./assets/imgs/quera-solution-files.jpg)
+
+
 2. **Running the solution files using Octave Container** via a python judge script (`test.py`) that defines how the solution is tested.
 3. **Comparing outputs** with expected results defined in test cases.
 
@@ -44,18 +79,6 @@ This system can be extended or adapted for a wide range of evaluation scenarios,
 - 🧠 **Minimal dependencies** using standard Octave
 - 🔧 **Easy integration** with learning platforms or backends
 
----
-
-## 📦 Setup
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/dwin-gharibi/quera_matlab_judge.git
-cd quera_matlab_judge
-```
-
----
 
 ## ⚙️ Integration with Paas Judge
 
@@ -67,29 +90,59 @@ To integrate with [Quera's Paas Judge](https://github.com/QueraTeam/):
 
 ---
 
-## 📁 Project Structure
+🐳 docker-compose.yml
 
 ```
-quera_matlab_judge/
-├── Dockerfile              # Octave-based judge environment
-├── judge/
-│   ├── judge.m             # Entry point for running tests
-│   └── utils.m             # Helper scripts
-├── sample_problems/
-│   ├── solution.m          # Example correct solution
-│   ├── input.txt           # Sample input
-│   ├── expected_output.txt # Expected result
-│   └── judge.m             # Custom judge logic
-└── .github/
-    └── workflows/
-        └── test.yml        # GitHub Actions CI tests
+version: "3.3"
+services:
+  octave-container:
+    image: registry.gitlab.com/qio/standard/gnuoctave/octave:8.2.0
+    container_name: "octave-container"
+    working_dir: /mnt
+    volumes:
+      - ./solution:/mnt
+    stdin_open: true
+    tty: true
+    command: ["tail", "-f", "/dev/null"]
 ```
+
+📌 What It Does
+
+- Uses the official Octave image from GitLab.
+
+- Mounts your local ./solution directory into the container's /mnt.
+
+- Starts a persistent container (tail -f /dev/null) so you can run commands inside interactively.
+
+- Useful for debugging or executing MATLAB/Octave .m files manually.
 
 ---
 
-## ✅ Continuous Integration with GitHub Actions
 
-The repo includes a [GitHub Actions workflow](.github/workflows/test.yml) that builds the Docker image and runs tests against the sample problems to ensure the judge is functioning as expected.
+## 📁 Project Structure
+
+```
+quera_matlab_judge
+├── README.md
+├── assets
+├── docker-compose.yml      # Octave docker-compose file 
+├── generate_tests.py       # Tests generator and discoverer
+├── requirements.txt
+├── scripts         # Octave Judge helpers (docker handler and octave runner)
+│   ├── docker_handler.py
+│   └── octave_runner.py
+├── solution        # Solutions will come here (like solution.m)
+│   ├── Dockerfile
+│   └── solution.m
+├── test.py         # Main Tester, Entry point
+├── test_cases      # Test cases for I/O judge
+│   ├── in
+│   │   └── ...
+│   └── out
+│       └── ...
+├── tester_config.json      # Quera's tester config
+└── valid_files         # Quera's tester valid files
+```
 
 ---
 
