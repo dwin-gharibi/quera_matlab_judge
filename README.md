@@ -6,9 +6,9 @@
 
 Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using @gnu-octave. It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings.
 
-
+<p align="center">
 ![Octave image](./assets/imgs/octave.svg)
-
+</p>
 
 ---
 
@@ -128,20 +128,20 @@ quera_matlab_judge
 ├── docker-compose.yml      # Octave docker-compose file 
 ├── generate_tests.py       # Tests generator and discoverer
 ├── requirements.txt
-├── scripts         # Octave Judge helpers (docker handler and octave runner)
+├── scripts                 # Octave Judge helpers (docker handler and octave runner)
 │   ├── docker_handler.py
 │   └── octave_runner.py
-├── solution        # Solutions will come here (like solution.m)
+├── solution                # Solutions will come here (like solution.m)
 │   ├── Dockerfile
 │   └── solution.m
-├── test.py         # Main Tester, Entry point
-├── test_cases      # Test cases for I/O judge
+├── test.py                 # Main Tester, Entry point
+├── test_cases              # Test cases for I/O judge
 │   ├── in
 │   │   └── ...
 │   └── out
 │       └── ...
 ├── tester_config.json      # Quera's tester config
-└── valid_files         # Quera's tester valid files
+└── valid_files             # Quera's tester valid files
 ```
 
 ---
