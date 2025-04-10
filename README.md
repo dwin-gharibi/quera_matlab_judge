@@ -6,9 +6,7 @@
 
 Welcome to the **Quera's MATLAB (Octave) Judge** — a lightweight, containerized, and automated grading system for evaluating MATLAB-style `.m` code using @gnu-octave. It's designed for integration with [Quera's Paas Judge](https://github.com/QueraTeam), enabling hands-free code testing and evaluation, especially in educational and competition settings.
 
-<p align="center">
 ![Octave image](./assets/imgs/octave.svg)
-</p>
 
 ---
 
